@@ -1,0 +1,60 @@
+Lab2 - Create new class - Lab2
+        Create threads using 3 options
+            1. extends thread
+            2. Implements Runnable
+            3. java 8 - lambda 
+            In each code -> run for loop 20 times  
+        main -
+            start all three threads
+        Observe - 1. TimeSlicing
+                  2. Different Thread finishes/starts
+    
+        class Lab2Helper1 extends Thread{
+        @Override
+        public void run() {
+            for (int i  = 0 ;i < Lab2.count ; i++) {
+                System.out.print(".");
+            }
+        }
+    }
+    class Lab2Helper2 implements Runnable{
+        public void run() {
+            for (int i  = 0 ;i < Lab2.count ; i++) {
+                System.out.print("x");
+            }
+        };
+    }
+    public class Lab2 {
+        static int count = 20000;
+        public static void main(String[] args) {
+        Runnable lab2helper3 = ()->{
+            for (int i  = 0 ;i < Lab2.count ; i++) {
+                System.out.print("o");
+            }
+        };
+        Lab2Helper1 t1 = new Lab2Helper1();
+        Thread t2 = new Thread(new Lab2Helper2());
+        Thread t3 = new Thread(lab2helper3);
+        t1.start();
+        t2.start();
+        t3.start();
+        }
+    }
+
+
+Lab1 - 
+        Create a new project  - Demo1 
+        Create a new class Lab1 
+            import java.util.Scanner;
+
+            public class Lab1 {
+                public static void main(String[] args) {
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.println("Please enter a number to continue");
+                    scanner.nextInt();
+                    System.out.println("Hello World !!!");
+                }
+            }
+        run  (don't enter number)
+        cmd>jconsole / jvisualvm
+            select Lab1 and observe threads
