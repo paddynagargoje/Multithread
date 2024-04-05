@@ -1,0 +1,23 @@
+
+import java.util.Date;
+        import java.util.concurrent.Executors;
+        import java.util.concurrent.ScheduledExecutorService;
+        import java.util.concurrent.TimeUnit;
+
+        class Lab4Helper implements Runnable {
+            @Override
+            public void run() {
+                System.out.println(new Date());
+            }
+        }
+
+        public class Lab4 {
+            public static void main(String[] args) {
+                System.out.println("-------Main " + new Date());
+                ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+            //	ses.schedule(new Lab4Helper(), 2, TimeUnit.SECONDS);
+             //   ses.scheduleAtFixedRate(new Lab4Helper(),5,2,TimeUnit.SECONDS); //regardless of executing first task executed with fixed interval
+                ses.scheduleWithFixedDelay(new Lab4Helper(), 5, 2, TimeUnit.SECONDS); //after executing first task complted then delay time & execute
+            }
+        }
+
